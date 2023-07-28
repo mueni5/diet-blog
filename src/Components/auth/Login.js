@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import {useNavigate} from 'react-router-dom'
 import Form from "react-bootstrap/Form"
 import Container  from 'react-bootstrap/Container'
 import Button from "react-bootstrap/Button"
@@ -9,7 +10,7 @@ import './style.css'
 export default function Login({handleSetUser}) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState('')
-    
+    const navigate = useNavigate()
 
     function handleSubmit (e){
         e.preventDefault()
@@ -29,6 +30,7 @@ export default function Login({handleSetUser}) {
     function handleAuthenticate (data){
         localStorage.setItem('jwt', data.jwt)
         handleSetUser(data.user)
+        navigate(`/${data.user.role}/dashboard`)
     }
     function handleForgotPswd(){
         console.log("i have been clicked")

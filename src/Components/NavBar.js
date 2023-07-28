@@ -4,7 +4,7 @@ import Navbar from'react-bootstrap/Navbar';
 import Nav from 'react-bootstrap/Nav'
 
 export default function NavBar({user}) {
-  console.log(user)
+
   switch (user.role){
     case 'doctor':
       return (<>
