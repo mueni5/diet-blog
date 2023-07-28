@@ -6,10 +6,10 @@ import Col from 'react-bootstrap/Col'
 import Row from "react-bootstrap/Row"
 import './style.css'
 
-export default function Login() {
+export default function Login({handleSetUser}) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState('')
-    const [user, setUser] = useState({})
+    
 
     function handleSubmit (e){
         e.preventDefault()
@@ -28,7 +28,7 @@ export default function Login() {
     }
     function handleAuthenticate (data){
         localStorage.setItem('jwt', data.jwt)
-        setUser(data.user)
+        handleSetUser(data.user)
     }
     function handleForgotPswd(){
         console.log("i have been clicked")

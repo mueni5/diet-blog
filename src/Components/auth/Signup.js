@@ -1,4 +1,5 @@
 import React, {useState} from 'react'
+import { useNavigate } from 'react-router-dom'
 import Form from "react-bootstrap/Form"
 import Container  from 'react-bootstrap/Container'
 import Button from "react-bootstrap/Button"
@@ -6,12 +7,12 @@ import Col from 'react-bootstrap/Col'
 import Row from "react-bootstrap/Row"
 import './style.css'
 
-export default function Signup() {
+export default function Signup({handleSetUser}) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState('')
     const [passwordConfirmation, setPasswordConfirmation] = useState('')
     const [role, setRole] = useState('')
-    const [user, setUser] = useState({})
+    let navigate = useNavigate()
 
     function handleSubmit (e){
         e.preventDefault()
@@ -32,7 +33,8 @@ export default function Signup() {
     }
     function handleAuthenticate (data){
         localStorage.setItem('jwt', data.jwt)
-        setUser(data.user)
+        handleSetUser(data.user)
+        navigate('/login')
     }
 
   return (
