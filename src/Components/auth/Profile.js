@@ -13,6 +13,7 @@ export default function Profile({user}) {
     const [bio, setBio] = useState('')
     const [age, setAge] = useState(0)
     const [sex, setSex] = useState('')
+    const token = localStorage.getitem("jwt");
     const userId = user.id
     console.log(userId)
     function handleSubmit (e){
@@ -20,7 +21,8 @@ export default function Profile({user}) {
         fetch('/create_profile', {
             method: "POST",
             headers: {
-                "Content-Type": "application/json"  
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${token}`  
             },
             body: JSON.stringify({ user: {
                 first_name: `${firstName}`,

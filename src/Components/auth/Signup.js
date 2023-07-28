@@ -34,7 +34,7 @@ export default function Signup({handleSetUser}) {
     function handleAuthenticate (data){
         localStorage.setItem('jwt', data.jwt)
         handleSetUser(data.user)
-        navigate('/login')
+        navigate('/profile')
     }
 
   return (
