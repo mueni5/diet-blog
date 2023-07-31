@@ -39,7 +39,15 @@ export default function DietBlog() {
                 <Card key={index} image={post.image} title={post.title} />
             </a>
         ))}
+            </div>
+
+        {/*Book an appointment form*/}
+        <div className="appointment-form">
+            <h1>Book an appointment</h1>
+            <p>Click the button below to book an appointment with a dietitian</p>
+                <button className="appointment-button">Book</button>
+            </div>
         </div>
-        </div>
+
     )
 }

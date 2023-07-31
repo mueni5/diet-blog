@@ -17,10 +17,18 @@ export default function Blog() {
 
 
     return (
-        <div>
+        <div className="blog-container">
+            <div className="back-button">
+                <a href="/blog">Back</a>
+            </div>
+            <div className="blog-image">
+                <img src={blogPost.image} alt={blogPost.title} />
+            </div>
             <h1>{blogPost.title}</h1>
-            <img src={blogPost.image} alt={blogPost.title} />
-            <p>{blogPost.content}</p>
+
+            <div className="blog-content">
+                <p>{blogPost.content}</p>
+            </div>
         </div>
     )
 }
