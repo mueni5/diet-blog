@@ -1,10 +1,10 @@
 .chat-container {
-    text-align: center;
-    background-color: rgb(145, 250, 176);
-    padding: 20px;
+    text-align: left;
+    background-color: rgb(245, 185, 195);
+    padding: 80px;
     border-radius: 8px;
     margin: 10px auto;
-    box-shadow: 0 4px 8px rgba(238, 140, 140, 0.1);
+    box-shadow: 0 4px 8px rgba(236, 25, 25, 0.212);
     width: 80%;
     max-width: 500px;
   }
@@ -19,28 +19,30 @@
   
   .chat-messages {
     max-height: 300px;
+    color : white;
     overflow-y: auto;
-    margin-bottom: 20px;
+    margin-bottom: 50px;
   }
   
   
   .chat-message {
     border: 1px solid #e95050;
-    border-radius: 8px;
-    padding: 15px;
-    margin-bottom: 10px;
+    border-radius: 18px;
+    padding: 20px;
+    margin-bottom: 25px;
+    color : white;
   }
   
   .message-sender {
-    font-size: 16px;
+    font-size: 15px;
     font-weight: bold;
     color: #333;
   }
   
   
   .message-content {
-    font-size: 14px;
-    color: #333;
+    font-size: 15px;
+    color: #302e2e;
   }
   
   /* Chat Message Timestamp */
@@ -59,7 +61,7 @@
   .chat-input textarea {
     width: 100%;
     resize: vertical;
-    border: 1px solid #ccc;
+    border: 1px solid #eff0e8;
     border-radius: 8px;
     padding: 8px;
     margin-right: 10px;
