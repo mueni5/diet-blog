@@ -1,5 +1,10 @@
+a {
+    text-decoration: none;
+    color: black;
+}
+
 .card {
-    width: 500px;
+    width: 450px;
     height: fit-content;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
     overflow: hidden;
@@ -13,7 +18,7 @@
 }
 
 .card-image {
-    width: 400px;
+    width: 450px;
     height: 280px;
 }
 
@@ -25,10 +30,11 @@
 
 .card-title{
     display: flex;
-    justify-content: flex-start;
+    justify-content: center;
+    font-weight: medium;
     flex-wrap: wrap;
-    background-color: pink;
-    padding: 30px 0px;
+    background-color: #fca4f4;
+    padding: 40px 0px;
 }
 
 .card-container {
@@ -37,4 +43,15 @@
     align-items: center;
     flex-wrap: wrap;
     gap: 20px;
+    width: 80%;
+    margin: 5rem auto;
+}
+
+.header {
+    width: 80%;
+    margin: 2rem auto;
+    background-color: #fca4f4;
+    padding: 20px 0px;
+    /*border-bottom radius*/
+    border-radius: 0px 0px 5px 5px;
 }
