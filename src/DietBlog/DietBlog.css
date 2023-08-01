@@ -4,7 +4,7 @@ a {
 }
 
 .card {
-    width: 450px;
+    width: 400px;
     height: fit-content;
     box-shadow: rgba(0, 0, 0, 0.1) 0px 0px 5px 0px, rgba(0, 0, 0, 0.1) 0px 0px 1px 0px;
     overflow: hidden;
@@ -18,7 +18,7 @@ a {
 }
 
 .card-image {
-    width: 450px;
+    width: 400px;
     height: 280px;
 }
 
@@ -42,7 +42,7 @@ a {
     justify-content: flex-start;
     align-items: center;
     flex-wrap: wrap;
-    gap: 20px;
+    gap: 40px;
     width: 80%;
     margin: 5rem auto;
 }
@@ -93,15 +93,16 @@ a {
     min-height: 100vh;
     margin: 2rem auto;
 }
-
-.back-button{
+.nav-blog-buttons{
+    padding: 2rem 5rem;
+    display: flex;
+    justify-content: space-between;
+}
+.nav-blog-buttons a{
     color: white;
     padding: 10px 20px;
     background-color: #fca4f4;
     border-radius: 5px;
-    position: absolute;
-    left: 20px;
-    top: 20px;
 }
 
 .appointment-form{

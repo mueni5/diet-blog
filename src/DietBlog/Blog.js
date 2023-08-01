@@ -3,9 +3,17 @@ import { useParams } from "react-router-dom"
 import { BASE_URL } from "./DietBlog";
 import { useState, useEffect } from 'react'
 
+const NUM_BLOGS = 6;
+
 export default function Blog() {
     //get id from url
     const { id } = useParams();
+
+    const next_blog = () => {
+        let id_int = parseInt(id)
+        if (id_int+1 > 6) return 1
+        return id_int+1
+    }
     //fetch blog post with id
     const [blogPost, setBlogPost] = useState([]);
 
@@ -24,8 +32,9 @@ export default function Blog() {
 
     return (
         <div className="blog-container">
-            <div className="back-button">
+            <div className="nav-blog-buttons">
                 <a href="/blog">Back</a>
+                <a href={`/blog/${next_blog()}`}>Next</a>
             </div>
 
                 <h1>{blogPost.title}</h1>
