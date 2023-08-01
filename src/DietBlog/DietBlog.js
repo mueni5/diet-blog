@@ -19,12 +19,34 @@ function Card({image, title}){
 
 export default function DietBlog() {
     const [blogPosts, setBlogPosts] = useState([]);
+    const [question, setQuestion] = useState("");
 
     useEffect(() => {
         fetch(`${BASE_URL}/diet_blogs`)
         .then(response => response.json())
         .then(data => setBlogPosts(data));
     }, []);
+
+
+    const sendQuestion = () => {
+        const data = {
+            user_id: 1,
+            question: question
+        }
+
+        fetch(`${BASE_URL}/diet_questions`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(data),
+        })
+        .then(response => response.json())
+        .then(data => {
+            setQuestion("");
+            alert("Your query has been received. We will get back to you soon");
+        })
+    }
 
 
     return (
@@ -43,9 +65,19 @@ export default function DietBlog() {
 
         {/*Book an appointment form*/}
         <div className="appointment-form">
-            <h1>Book an appointment</h1>
-            <p>Click the button below to book an appointment with a dietitian</p>
-                <button className="appointment-button">Book</button>
+            <h1>Ask a question</h1>
+            <p>Do you have any question regarding diet?<br/> Ask the question below and we will get back with an answer</p>
+                <textarea className="appointment-textarea" placeholder="Ask your question here" onChange={
+                    (event) => {
+                        setQuestion(event.target.value);
+                    }
+                } value={question}></textarea>
+        <br/>
+                <button className="appointment-button" onClick={
+                    () => {
+                        sendQuestion();
+                    }
+                }>Send</button>
             </div>
         </div>
 
