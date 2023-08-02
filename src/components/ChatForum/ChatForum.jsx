@@ -1,45 +1,50 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import './ChatForum.css';
 
 const ChatForum = () => {
-  const [messages, setMessages] = useState([
-    {
-      id: 1,
-      content: 'Hello everyone! How are you all doing?',
-      sender: 'Christine',
-      timestamp: '2023-07-26 10:30 AM',
-    },
-    
-    {
-        id: 2,
-        content: 'I am doing great so far',
-        sender: 'Bree',
-        timestamp: '2023-07-26 10:34 AM',
-    },
-
-    {
-        id: 3,
-        content: 'experiecing terrible nausea',
-        sender: 'Taffie',
-        timestamp: '2023-07-26 10:40 AM',
-    },
-    
-  ]);
+  const [messages, setMessages] = useState([]);
   const [newMessage, setNewMessage] = useState('');
 
-  const handleSendMessage = () => {
-    if (newMessage.trim() !== '') {
-      const message = {
-        id: messages.length + 1,
-        content: newMessage,
-        sender: 'User', 
-        timestamp: new Date().toLocaleString(),
-      };
-      setMessages([...messages, message]);
-      setNewMessage('');
-    }
-  };
+  useEffect(() => {
+    fetchMessages();
+  }, []);
 
+  function fetchMessages() {
+    fetch(`/messages/`, {
+      method: "GET",
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((r) => r.json())
+      .then((data) => setMessages(data))
+      .catch((error) => {
+        console.error('Error fetching messages:', error);
+      });
+  }
+
+  function handleCreateMessage() {
+    const message = {
+      content: newMessage,
+      sender: 'User',
+      timestamp: new Date().toLocaleString(),
+    };
+    fetch(`/messages/`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(message),
+    })
+      .then((r) => r.json())
+      .then((response) => {
+        setMessages([...messages, response]);
+        setNewMessage('');
+      })
+      .catch((error) => {
+        console.error('Error sending message:', error);
+      });
+  }
   return (
     <div className="chat-container">
       <h2 className="chat-title">Chat Forum</h2>
@@ -59,7 +64,7 @@ const ChatForum = () => {
           onChange={(e) => setNewMessage(e.target.value)}
           placeholder="Type your message here..."
         />
-        <button onClick={handleSendMessage}>Send</button>
+        <button onClick={handleCreateMessage}>Send</button>
       </div>
     </div>
   );
