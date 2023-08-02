@@ -4,7 +4,7 @@
     padding: 80px;
     border-radius: 8px;
     margin: 10px auto;
-    box-shadow: 0 4px 8px rgba(236, 25, 25, 0.212);
+    box-shadow: 0 4px 8px rgba(37, 21, 21, 0.212);
     width: 80%;
     max-width: 500px;
   }
@@ -19,30 +19,30 @@
   
   .chat-messages {
     max-height: 300px;
-    color : white;
     overflow-y: auto;
     margin-bottom: 50px;
   }
   
   
   .chat-message {
-    border: 1px solid #e95050;
+    border: 1px solid #db5959;
+    background-color: #fff;
     border-radius: 18px;
     padding: 20px;
     margin-bottom: 25px;
-    color : white;
+    
   }
   
   .message-sender {
     font-size: 15px;
     font-weight: bold;
-    color: #333;
+    color: black;
   }
   
   
   .message-content {
     font-size: 15px;
-    color: #302e2e;
+    color: black
   }
   
   /* Chat Message Timestamp */
@@ -79,6 +79,6 @@
   
   /* Chat Send Button on Hover */
   .chat-input button:hover {
-    background-color: #1a2f6e;
+    background-color: #0b132c;
   }
   
