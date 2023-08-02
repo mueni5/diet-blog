@@ -33,18 +33,19 @@ export default function Blog() {
     return (
         <div className="blog-container">
             <div className="nav-blog-buttons">
-                <a href="/blog">Back</a>
+                <a href="/">Back</a>
                 <a href={`/blog/${next_blog()}`}>Next</a>
             </div>
 
-                <h1>{blogPost.title}</h1>
+            <h1 className="blogpost-title">{blogPost.title}</h1>
             <div className="blog-image">
                 <img src={blogPost.image} alt={blogPost.title} />
             </div>
 
 
             <div className="blog-content">
-                <div dangerouslySetInnerHTML={{__html: blogPost.content}}>
+                <div dangerouslySetInnerHTML={{__html: blogPost.content}} className="blog-post-content">
+
                 </div>
             </div>
         </div>

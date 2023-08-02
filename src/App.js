@@ -9,7 +9,7 @@ return (
   <div className="App">
     <BrowserRouter>
         <Routes>
-            <Route path="/blog" element={<DietBlog />} />
+            <Route path="/" element={<DietBlog />} />
             <Route path="/blog/:id" element={<Blog />} />
 
         </Routes>
