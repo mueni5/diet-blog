@@ -32,12 +32,14 @@ export default function Blog() {
 
     return (
         <div className="blog-container">
+            <div className="blog-nav">
             <div className="nav-blog-buttons">
                 <a href="/">Back</a>
                 <a href={`/blog/${next_blog()}`}>Next</a>
             </div>
 
             <h1 className="blogpost-title">{blogPost.title}</h1>
+            </div>
             <div className="blog-image">
                 <img src={blogPost.image} alt={blogPost.title} />
             </div>
