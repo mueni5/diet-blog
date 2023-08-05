@@ -10,7 +10,7 @@ const PortalNavigation = ({ user }) => {
     <div className='portal-nav'>
       {user.doc ?
         <div className='nav-links'>
-          <NavLink to='/portal/mothers'><BsFilePerson /> Mothers</NavLink>
+          <NavLink to='/portal/patients'><BsFilePerson /> Mothers</NavLink>
           <NavLink to='/portal/calendar'><BsCalendarPlus /> Calendar</NavLink>
         </div>
       :
