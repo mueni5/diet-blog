@@ -7,7 +7,7 @@
   .nav-links a{
     text-decoration: none;
     text-transform: uppercase;
-    color: #fff;
+    color: white;
     outline: 2px solid #fff;
     padding: 10px 40px;
     margin-left: 70px;
@@ -16,12 +16,12 @@
     transition: outline-color .5s;
   }
   .nav-links a:hover{
-    color:#fff;
-    background-color:black;
+    color:black;
+    background-color:white;
     outline-color: rgba(84,58,183,1);
   }
   .nav-links a.active{
     color:  rgb(183, 58, 146);
-    background-color: black;
+    background-color: white;
     outline-color: rgba(84,58,183,1);
   }

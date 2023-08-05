@@ -5,7 +5,7 @@
   .bttn {
     background-color: white;
     color: black;
-    border: 2px solid #fff;
+    border: 2px solid black;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -22,8 +22,8 @@
   }
   .bttn-clicked{
     background-color:black;
-    color:rgba(183, 58, 146,1);
-    border: 2px solid #fff;
+    color: #fff;
+    border: 2px solid rgba(183, 58, 146,1);
     display: flex;
     flex-direction: row;
     justify-content: space-between;
