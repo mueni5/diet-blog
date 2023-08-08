@@ -7,6 +7,7 @@ import Col from 'react-bootstrap/Col'
 import Row from "react-bootstrap/Row"
 import './style.css'
 
+
 export default function Signup({handleSetUser}) {
     const [email, setEmail] = useState("")
     const [password, setPassword] = useState('')
@@ -34,7 +35,9 @@ export default function Signup({handleSetUser}) {
     function handleAuthenticate (data){
         localStorage.setItem('jwt', data.jwt)
         handleSetUser(data.user)
-        navigate('/login')
+        
+        navigate(`/${data.user.role}/dashboard`)
+
     }
 
   return (
@@ -51,7 +54,7 @@ export default function Signup({handleSetUser}) {
                     <Form.Select onChange={(e)=>setRole(e.target.value)} >
                         <option value="">Choose User Role...</option>
                         <option value="doctor">Doctor</option>
-                        <option value="patient">Patient</option>
+                        <option value="patient">Mother</option>
                     </Form.Select>
                 </Col>
             </Form.Group>

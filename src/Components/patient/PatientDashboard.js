@@ -2,6 +2,6 @@ import React from 'react'
 
 export default function PatientDashboard() {
   return (
-    <div>PatientDashboard</div>
+    <div>Mother Dashboard</div>
   )
 }
