@@ -1,3 +1,10 @@
+import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import ChatForum from './components/ChatForum/ChatForum';
+
+
+
 import React, { useState } from "react";
 import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
 import Signup from "./Components/auth/Signup.js"
@@ -95,6 +102,8 @@ function App() {
       <Route path="/profile" element={<Profile user={user} />}/>
       <Route path="/doctor/dashboard" element={<DoctorDashboard user={user} />}/>
       <Route path="/patient/dashboard" element={<PatientDashboard user={user} />}/>
+      <Route path="/Chat-forum" element={<ChatForum />} />
+
 
 
       <Route path="/" element={<LandingPage />} />
