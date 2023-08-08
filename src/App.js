@@ -1,4 +1,14 @@
-import './App.css';
+import React, { useState } from "react";
+import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
+import Signup from "./Components/auth/Signup.js"
+import Login from "./Components/auth/Login.js"
+import Profile from "./Components/auth/Profile.js"
+import LandingPage from './Components/LandingPage.js'
+import NavBar from "./Components/NavBar.js";
+import DoctorDashboard from "./Components/doctor/DoctorDashboard.js";
+import PatientDashboard from "./Components/patient/PatientDashboard.js";
+
+
 
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
@@ -17,8 +27,15 @@ import PortalCalendar from './Components/PortalCalendar/PortalCalendar.js'
 
 
 function App() {
-  const [user, setUser] = useState(null)
+
+  const [user, setUser] = useState({})
+  function handleSetUser (data){
+    setUser(data)
+  }
+
   const [search, setSearch] = useState('')
+
+
 
   const [patientAppts, setPatientAppts] = useState([])
   const [patientNames, setPatientNames] = useState([])
@@ -68,7 +85,27 @@ function App() {
         <Route path='/portal/appointments' element={<PortalAppts patientAppts={patientAppts} user={user} /> } />
         <Route path='/portal/labresults' element={<PortalLabResultsPage user={user} results={results} /> } />
       </Routes>
-     
+
+      <>
+    <Router>
+      <NavBar user={user} />
+      <Routes>
+      <Route path="/signup" element={<Signup handleSetUser={handleSetUser}/>}/>
+      <Route path="/login" element={<Login  handleSetUser={handleSetUser}/>}/>
+      <Route path="/profile" element={<Profile user={user} />}/>
+      <Route path="/doctor/dashboard" element={<DoctorDashboard user={user} />}/>
+      <Route path="/patient/dashboard" element={<PatientDashboard user={user} />}/>
+
+
+      <Route path="/" element={<LandingPage />} />
+      </Routes>
+
+    </Router>
+    </>
+
+
+
+
     </div>
   );
 }
