@@ -1,7 +1,7 @@
 import React from 'react'
 import PortalNavigation from '../PortalNavigation/PortalNavigation.js'
 import PortalLabResults from '../PortalLabResults/PortalLabResults.js'
-import './PortalLabResults.css'
+import './PortalLabResultsPage.css'
 
 const PortalLabResultsPage = ({ user, results }) => {
 
