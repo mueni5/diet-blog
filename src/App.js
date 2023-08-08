@@ -1,3 +1,5 @@
+
+
 import './App.css'
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
@@ -33,8 +35,11 @@ import PortalLabResultsPage from './Components/PortalLabResultsPage/PortalLabRes
 import PortalCalendar from './Components/PortalCalendar/PortalCalendar.js'
 
 
-function App() {
+import { BrowserRouter,Route,Routes } from 'react-router-dom';
+import DietBlog from './DietBlog/DietBlog';
+import Blog from './DietBlog/Blog';
 
+function App() {
   const [user, setUser] = useState({})
   function handleSetUser (data){
     setUser(data)
@@ -111,12 +116,19 @@ function App() {
 
     </Router>
     </>
+    <BrowserRouter>
+        <Routes>
+            <Route path="/blog/:id" element={<Blog />} />
+
+        </Routes>
+    </BrowserRouter>
 
 
 
 
     </div>
   );
+
 }
 
 export default App;
