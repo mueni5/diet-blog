@@ -1,11 +1,11 @@
 .chat-container {
     text-align: left;
-    background-color: rgb(245, 185, 195);
-    padding: 80px;
+    background-color: rgb(245, 187, 196);
+    padding: 40px;
     border-radius: 8px;
     margin: 10px auto;
     box-shadow: 0 4px 8px rgba(37, 21, 21, 0.212);
-    width: 80%;
+    width: 50%;
     max-width: 500px;
   }
   
@@ -26,7 +26,7 @@
   
   .chat-message {
     border: 1px solid #db5959;
-    background-color: #fff;
+    background-image: #fff;
     border-radius: 18px;
     padding: 20px;
     margin-bottom: 25px;
@@ -64,7 +64,7 @@
     border: 1px solid #eff0e8;
     border-radius: 8px;
     padding: 8px;
-    margin-right: 10px;
+    margin-right: 0px;
   }
   
   /* Chat Send Button */

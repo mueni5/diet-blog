@@ -1,134 +1,105 @@
-
-
-import './App.css'
-import React from 'react';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import ChatForum from './components/ChatForum/ChatForum';
-
-
-
-import React, { useState } from "react";
-import {BrowserRouter as Router, Routes, Route} from "react-router-dom"
-import Signup from "./Components/auth/Signup.js"
-import Login from "./Components/auth/Login.js"
-import Profile from "./Components/auth/Profile.js"
-import LandingPage from './Components/LandingPage.js'
-import NavBar from "./Components/NavBar.js";
-import DoctorDashboard from "./Components/doctor/DoctorDashboard.js";
-import PatientDashboard from "./Components/patient/PatientDashboard.js";
-
-
-
+import './App.css';
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from 'react-router-dom';
-
 import { useSelector, useDispatch } from "react-redux";
-import { fetchAppointments } from './Features/appointmentsSlice.js'
-import { fetchPatients } from './Features/patientsSlice.js'
-import { fetchResults } from './Features/resultsSlice.js'
 
-
-import PortalUser from './Components/PortalUser/PortalUser.js';
-import PortalPatients from './Components/PortalPatients/PortalPatients.js'
+import NavBar from './Components/NavBar/NavBar.js';
+import Home from './Components/Home/Home.js';
+import Login from './Components/Login/Login.js';
+import Departments from './Components/Departments/Departments.js';
+import DepartmentProfile from './Components/DepartmentProfile/DepartmentProfile.js';
+import DoctorProfile from './Components/DoctorProfile/DoctorProfile';
+import Portal from './Components/Portal/Portal.js';
+import PortalPatients from './Components/PortalPatients/PortalPatients.js';
 import PortalAppts from './Components/PortalAppts/PortalAppts.js';
-import PortalLabResultsPage from './Components/PortalLabResultsPage/PortalLabResultsPage.js';
-import PortalCalendar from './Components/PortalCalendar/PortalCalendar.js'
+import PortalLabResults from './Components/PortalLabResults/PortalLabResults.js';
+import PortalCalendar from './Components/PortalCalendar/PortalCalendar.js';
+import ChatForum from './components/ChatForum/ChatForum';
+import DietBlog from './components/ChatForum/DietBlog';
+import Footer from './Components/Footer/Footer.js';
+
+import { fetchAppointments } from './Features/appointmentsSlice.js';
+import { fetchPatients } from './Features/patientsSlice.js';
+import { fetchDepartments } from './Features/departmentsSlice.js';
+import { fetchDoctors } from './Features/doctorsSlice.js';
+import { fetchResults } from './Features/resultsSlice.js';
 
 
-import { BrowserRouter,Route,Routes } from 'react-router-dom';
-import DietBlog from './DietBlog/DietBlog';
-import Blog from './DietBlog/Blog';
+
 
 function App() {
-  const [user, setUser] = useState({})
-  function handleSetUser (data){
-    setUser(data)
-  }
-
-  const [search, setSearch] = useState('')
-
-
-
-  const [patientAppts, setPatientAppts] = useState([])
-  const [patientNames, setPatientNames] = useState([])
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(fetchAppointments())
-
-    .then(dispatch(fetchPatients()))
-
-    .then(dispatch(fetchResults()))
-  }, [dispatch]);
+ const [user, setUser] = useState(null)
+ const [search, setSearch] = useState('')
+ const [dept, setDept] = useState(null)
+ const [doc, setDoc] = useState(null)
+ const [patientAppts, setPatientAppts] = useState([])
+ const [patientNames, setPatientNames] = useState([])
+ const dispatch = useDispatch();
 
 
-  const patients = useSelector(state => state.patients.entities)
-
-  const results = useSelector(state => state.results.entities)
-  const docAppointments = useSelector(state => state.appointments.entities)
-
-  useEffect(() => {
-    if(user && !user.doc){
-      setPatientAppts(docAppointments.filter(appt => appt.patient_id === user.id))
-    }
-    if(user && user.doc){
-      setPatientNames(patients.map(p => ({id: p.id, text: p.name})))
-    }
-  }, [user])
-
-  const filterPatients = () => {
-    if(search === '' ){
-      return patients
-    } else {
-      return patients.filter(p => p.name.toLowerCase().includes(search.toLowerCase()))
-    }
-  }
-
-
-  return (
-    <div className="App">
-
-      <Routes>
-
-
-        <Route path = '/portal' element={<PortalUser user={user} />}/>
-        <Route path = '/portal/patients' element={<PortalPatients patients={filterPatients()} docAppointments={docAppointments} search={search} setSearch={setSearch} user={user} />}/>
-        <Route path = '/portal/calendar' element={<PortalCalendar docAppointments={docAppointments} user={user} patientAppts={patientAppts} patients={patients} patientNames={patientNames} />}/>
-        <Route path='/portal/appointments' element={<PortalAppts patientAppts={patientAppts} user={user} /> } />
-        <Route path='/portal/labresults' element={<PortalLabResultsPage user={user} results={results} /> } />
-      </Routes>
-
-      <>
-    <Router>
-      <NavBar user={user} />
-      <Routes>
-      <Route path="/signup" element={<Signup handleSetUser={handleSetUser}/>}/>
-      <Route path="/login" element={<Login  handleSetUser={handleSetUser}/>}/>
-      <Route path="/profile" element={<Profile user={user} />}/>
-      <Route path="/doctor/dashboard" element={<DoctorDashboard user={user} />}/>
-      <Route path="/patient/dashboard" element={<PatientDashboard user={user} />}/>
-      <Route path="/Chat-forum" element={<ChatForum />} />
-
-
-
-      <Route path="/" element={<LandingPage />} />
-      </Routes>
-
-    </Router>
-    </>
-    <BrowserRouter>
-        <Routes>
-            <Route path="/blog/:id" element={<Blog />} />
-
-        </Routes>
-    </BrowserRouter>
+ useEffect(() => {
+   dispatch(fetchAppointments())
+   .then(dispatch(fetchDepartments()))
+   .then(dispatch(fetchPatients()))
+   .then(dispatch(fetchDoctors()))
+   .then(dispatch(fetchResults()))
+ }, [dispatch]);
 
 
 
 
-    </div>
-  );
+ const departments = useSelector(state => state.departments.entities)
+ const patients = useSelector(state => state.patients.entities)
+ const doctors = useSelector(state => state.doctors.entities)
+ const results = useSelector(state => state.results.entities)
+ const docAppointments = useSelector(state => state.appointments.entities)
 
+
+ useEffect(() => {
+   if(user && !user.doc){
+     setPatientAppts(docAppointments.filter(appt => appt.patient_id === user.id))
+   }
+   if(user && user.doc){
+     setPatientNames(patients.map(p => ({id: p.id, text: p.name})))
+   }
+ }, [user])
+
+
+ const filterPatients = () => {
+   if(search === '' ){
+     return patients
+   } else {
+     return patients.filter(p => p.name.toLowerCase().includes(search.toLowerCase()))
+   }
+ }
+
+
+
+
+ return (
+   <div className="App">
+     <NavBar user={user} setUser={setUser} />
+     <Routes>
+       <Route exact path = '/' element={<Home/>}/>
+       <Route exact path = '/departments' element={<Departments departments={departments} setDept={setDept} />}/>
+       <Route path = '/login' element={<Login setUser={setUser} />}/>
+       {/* <Route path="/blog/:id" element={<Blog />} /> */}
+       <Route path = '/departments/:id' element={<DepartmentProfile dept={dept} doctors={doctors} setDoc={setDoc} />}/>
+       <Route path = '/doctors/:id' element={<DoctorProfile doc={doc} />}/>
+       <Route path = '/portal' element={<Portal user={user} />}/>
+       <Route path = '/portal/patients' element={<PortalPatients patients={filterPatients()} docAppointments={docAppointments} search={search} setSearch={setSearch} user={user} />}/>
+       <Route path = '/portal/calendar' element={<PortalCalendar docAppointments={docAppointments} user={user} patientAppts={patientAppts} patients={patients} patientNames={patientNames} />}/>
+       <Route path='/portal/appointments' element={<PortalAppts patientAppts={patientAppts} user={user} /> } />
+       <Route path='/portal/labresults' element={<PortalLabResults user={user} results={results} /> } />
+       <Route path="/Chat-forum" element={<ChatForum />} />
+       <Route path="/Diet-blog" element={<DietBlog />} />
+
+
+     </Routes>
+     <Footer/>
+   </div>
+ );
 }
+
 
 export default App;
