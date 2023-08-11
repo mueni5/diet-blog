@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import './ChatForum.css';
-import chatImage from './images text.jpeg';
 
 
 const ChatForum = () => {
@@ -49,15 +48,9 @@ const ChatForum = () => {
   }
   return (
     <div className="chat-container">
-      <div
-        className="chat-image"
-        style={{
-          image: `url(${chatImage})`,
-        }}
-      ></div>
       <h2 className="chat-title">Chat Forum</h2>
       <div className="chat-messages">
-        {messages.map((message) => (
+       {messages.map((message) => (
           <div key={message.id} className="chat-message">
             <p className="message-sender">{message.sender}</p>
             <p className="message-content">{message.content}</p>
